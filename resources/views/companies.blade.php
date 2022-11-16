@@ -27,11 +27,27 @@
         <table class="table">
             <div class="col-md-9 mb-3">
                 <form action="" class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" name="search" value="{{ $search }}" placeholder="Search" aria-label="Search" style="width: 60%">
+                    <input class="form-control mr-sm-2" type="search" name="name" value="" placeholder="Search" aria-label="Search" style="width: 60%">
+                    <div>
+                      <select name="cro" id="">
+                        <option value="">select cro</option>
+                        @foreach ($companies as $company)
+                            <option value="{{$company->cro}}">{{$company->cro}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div>
+                      <select name="status" id="">
+                        <option value="">select status</option>
+                        @foreach ($companies as $company)
+                            <option value="{{$company->status}}">{{$company->status}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                   </form>
             </div>
-
 
             <thead>
               <tr>

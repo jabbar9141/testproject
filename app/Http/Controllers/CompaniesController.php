@@ -11,16 +11,19 @@ class CompaniesController extends Controller
     //
 
     public function getAllCompanies(Request $request){
+        // dd($request);
 
-        $search = $request['search'] ?? "";
 
-        if($search != ""){
-            $companies = Companie::where('name', 'like', '%' . $search . '%')->paginate(10);
+        if($request){
+            $companies = Companie::where('name', 'like', '%' . $request->name . '%')
+                                   ->where('cro', 'like', '%' .$request->cro. '%')
+                                   ->where('status', 'like', '%'.$request->status.'%')
+                                  ->paginate(10);
 
         }else{
             $companies = Companie::orderBy('id','DESC')->paginate(15);
         }
 
-        return view('companies')->with('companies',$companies)->with('search',$search);
+        return view('companies')->with('companies',$companies);
     }
 }
